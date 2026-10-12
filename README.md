@@ -1,3 +1,5 @@
+> **Archived educational project (not a production system).** This code illustrates Flask/SQLAlchemy/role-based forms. For local execution set a unique `ADMIN_PASSWORD` and a stable `FLASK_SECRET_KEY` in your environment; the application no longer publishes or bootstraps a default admin password. The repository history may still contain old demonstration credentials and database artifacts. Do not reuse those values.
+
 **Project Overview:**
 
 The "automated-employee-system" project is a small employee management system built on Flask, SQLAlchemy, and Flask-Login. Below is the detailed structure of the repository.
