@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -33,10 +34,11 @@ def create_app():
         from app.models import User  # <-- импорт перемещён сюда
         db.create_all()
         # <-- отсюда
-        # Проверка наличия администратора, если нет – создание
-        if User.query.filter_by(role='admin').first() is None:
+        # Create a demo admin only if the operator supplied a unique password.
+        bootstrap_password = os.environ.get("ADMIN_PASSWORD")
+        if bootstrap_password and User.query.filter_by(role='admin').first() is None:
             admin = User(username="admin", role="admin")
-            admin.set_password("admin") # пароль по умолчанию "admin", рекомендуется сменить
+            admin.set_password(bootstrap_password)
             db.session.add(admin)
             db.session.commit()
     return app
